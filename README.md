@@ -1,9 +1,9 @@
-# progress_indicators
+# Flutter progress indicators
 
-A new flutter package project.
+With this project, we are aiming to provide some cool, animated progress indicators to Flutter developers. 
 
-## Getting Started
+# Currently available
+## Jumping Dots
+Here's how it looks like. Detail guide comming soon.
 
-For help getting started with Flutter, view our online [documentation](https://flutter.io/).
-
-For help on editing package code, view the [documentation](https://flutter.io/developing-packages/).
+![](imgs/jumping_dots.gif)
