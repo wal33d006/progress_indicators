@@ -26,7 +26,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -37,10 +36,21 @@ class _MyHomePageState extends State<MyHomePage> {
         child: new Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            new Text(
-              'Can you see the jumping dots?',
+            new Text('Jumping dots'),
+            JumpingDotsProgressIndicator(
+              fontSize: 20.0,
             ),
-            JumpingDotsProgressIndicator(),
+            SizedBox(height: 60.0),
+            new Text('Heartbeat'),
+            SizedBox(height: 16.0),
+            HeartbeatProgressIndicator(
+              child: Icon(Icons.home),
+            ),
+            SizedBox(height: 60.0),
+            new Text('Glowing'),
+            GlowingProgressIndicator(
+              child: Icon(Icons.home),
+            ),
           ],
         ),
       ),
