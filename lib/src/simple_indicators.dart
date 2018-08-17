@@ -21,27 +21,27 @@ class HeartbeatProgressIndicator extends StatefulWidget {
 
 class _HeartbeatProgressIndicatorState extends State<HeartbeatProgressIndicator>
     with TickerProviderStateMixin {
-  Animation animation;
-  AnimationController controller;
+  Animation _animation;
+  AnimationController _controller;
 
   initState() {
     super.initState();
-    controller = _createOscillatingAnimationController(widget.duration, this);
-    animation = _createTweenAnimation(
-      controller,
+    _controller = _createOscillatingAnimationController(widget.duration, this);
+    _animation = _createTweenAnimation(
+      _controller,
       begin: widget.startScale,
       end: widget.endScale,
       curve: Curves.elasticOut,
     );
-    controller.forward();
+    _controller.forward();
   }
 
   @override
   Widget build(BuildContext context) =>
-      ScaleTransition(scale: animation, child: widget.child);
+      ScaleTransition(scale: _animation, child: widget.child);
 
   dispose() {
-    controller.dispose();
+    _controller.dispose();
     super.dispose();
   }
 }
@@ -63,27 +63,27 @@ class GlowingProgressIndicator extends StatefulWidget {
 
 class _GlowingProgressIndicatorState extends State<GlowingProgressIndicator>
     with TickerProviderStateMixin {
-  Animation animation;
-  AnimationController controller;
+  Animation _animation;
+  AnimationController _controller;
 
   initState() {
     super.initState();
-    controller = _createOscillatingAnimationController(widget.duration, this);
-    animation = _createTweenAnimation(
-      controller,
+    _controller = _createOscillatingAnimationController(widget.duration, this);
+    _animation = _createTweenAnimation(
+      _controller,
       begin: 0.0,
       end: 1.0,
       curve: Curves.easeOut,
     );
-    controller.forward();
+    _controller.forward();
   }
 
   @override
   Widget build(BuildContext context) =>
-      FadeTransition(opacity: animation, child: widget.child);
+      FadeTransition(opacity: _animation, child: widget.child);
 
   dispose() {
-    controller.dispose();
+    _controller.dispose();
     super.dispose();
   }
 }

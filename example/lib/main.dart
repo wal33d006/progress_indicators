@@ -51,9 +51,25 @@ class _MyHomePageState extends State<MyHomePage> {
             GlowingProgressIndicator(
               child: Icon(Icons.home),
             ),
+            AnimatedText('Loading'),
           ],
         ),
       ),
     );
+  }
+}
+
+class AnimatedText extends StatefulWidget {
+  final String text;
+  AnimatedText(this.text);
+
+  @override
+  _AnimatedTextState createState() => new _AnimatedTextState();
+}
+
+class _AnimatedTextState extends State<AnimatedText> {
+  @override
+  Widget build(BuildContext context) {
+    return Text(widget.text);
   }
 }
