@@ -28,6 +28,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+    print(Offset(0.0, -1.0).distanceSquared - Offset(0.0, 0.0).distanceSquared);
     return new Scaffold(
       appBar: new AppBar(
         title: new Text(widget.title),
@@ -51,9 +52,12 @@ class _MyHomePageState extends State<MyHomePage> {
             GlowingProgressIndicator(
               child: Icon(Icons.home),
             ),
-            SizedBox(height: 60.0),
+            SizedBox(height: 32.0),
             AnimatedText('Loading...'),
-            AnimatedText('Waleed'),
+            SizedBox(height: 32.0),
+            JumpingText('Loading...'),
+            SizedBox(height: 32.0),
+            ScalingText('Loading...'),
           ],
         ),
       ),
