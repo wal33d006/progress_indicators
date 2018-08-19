@@ -58,6 +58,22 @@ class _MyHomePageState extends State<MyHomePage> {
             JumpingText('Loading...'),
             SizedBox(height: 32.0),
             ScalingText('Loading...'),
+            SizedBox(height: 32.0),
+            CollectionSlideTransition(
+              children: <Widget>[
+                Icon(Icons.android),
+                Icon(Icons.apps),
+                Icon(Icons.announcement),
+              ],
+            ),
+            SizedBox(height: 32.0),
+            CollectionScaleTransition(
+              children: <Widget>[
+                Icon(Icons.android),
+                Icon(Icons.apps),
+                Icon(Icons.announcement),
+              ],
+            ),
           ],
         ),
       ),
