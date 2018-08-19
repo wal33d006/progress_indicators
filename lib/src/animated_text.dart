@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 
 import 'package:progress_indicators/src/collection_animators.dart';
 
-class AnimatedText extends StatefulWidget {
+class FadingText extends StatefulWidget {
   final String text;
 
-  AnimatedText(this.text);
+  FadingText(this.text);
 
   @override
-  _AnimatedTextState createState() => new _AnimatedTextState();
+  _FadingTextState createState() => new _FadingTextState();
 }
 
-class _AnimatedTextState extends State<AnimatedText>
+class _FadingTextState extends State<FadingText>
     with TickerProviderStateMixin {
   final _characters = <MapEntry<String, Animation>>[];
   AnimationController _controller;

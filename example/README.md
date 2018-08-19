@@ -1,8 +1,3 @@
-# example
+# Progress indicator sample
 
-A new Flutter project.
-
-## Getting Started
-
-For help getting started with Flutter, view our online
-[documentation](https://flutter.io/).
+This project showcases all the indicators available in project_indicators package.

@@ -53,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Icon(Icons.home),
             ),
             SizedBox(height: 32.0),
-            AnimatedText('Loading...'),
+            FadingText('Loading...'),
             SizedBox(height: 32.0),
             JumpingText('Loading...'),
             SizedBox(height: 32.0),
