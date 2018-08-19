@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/animation.dart';
 
+//Adds a horizontal list of variable number of jumping dots
+//
+// The animation is a smooth up/down continuous animation of each dot.
+// This animation can be used where a text is being expected from an async call
+// The below class is a private AnimatedWidget class which is called in the
+// StatefulWidget
+
 class _JumpingDot extends AnimatedWidget {
   final Color color;
   final double fontSize;
@@ -19,12 +26,31 @@ class _JumpingDot extends AnimatedWidget {
   }
 }
 
+// Creates a list with [numberOfDots] text dots, with 3 dots as default
+// default [fontSize] of 10.0, default [color] as black, [dotSpacing] (gap
+// between each dot) as 0.0 and default time for one cycle of animation
+// [milliseconds] as 250
+// One cycle of animation is one complete round of a dot animating up and back
+// to its original position.
+
 class JumpingDotsProgressIndicator extends StatefulWidget {
+
+  // Number of dots that are added in a horizontal list, default = 3
   final int numberOfDots;
+
+  // Font size of each dot, default = 10.0
   final double fontSize;
+
+  // Spacing between each dot, default 0.0
   final double dotSpacing;
+
+  // Color of the dots, default black
   final Color color;
+
+  // Time of one complete cycle of animation, default 250 milliseconds
   final int milliseconds;
+
+  // Starting and ending values for animations
   final double beginTweenValue = 0.0;
   final double endTweenValue = 8.0;
 
