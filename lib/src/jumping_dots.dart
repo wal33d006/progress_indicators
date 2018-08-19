@@ -120,18 +120,18 @@ class _JumpingDotsProgressIndicatorState
     animations.add(
         Tween(begin: widget.beginTweenValue, end: widget.endTweenValue)
             .animate(controllers[index])
-          ..addStatusListener((AnimationStatus status) {
-            if (status == AnimationStatus.completed)
-              controllers[index].reverse();
-            if (index == numberOfDots - 1 &&
-                status == AnimationStatus.dismissed) {
-              controllers[0].forward();
-            }
-            if (animations[index].value > widget.endTweenValue / 2 &&
-                index < numberOfDots - 1) {
-              controllers[index + 1].forward();
-            }
-          }));
+              ..addStatusListener((AnimationStatus status) {
+                if (status == AnimationStatus.completed)
+                  controllers[index].reverse();
+                if (index == numberOfDots - 1 &&
+                    status == AnimationStatus.dismissed) {
+                  controllers[0].forward();
+                }
+                if (animations[index].value > widget.endTweenValue / 2 &&
+                    index < numberOfDots - 1) {
+                  controllers[index + 1].forward();
+                }
+              }));
   }
 
   Widget build(BuildContext context) {
