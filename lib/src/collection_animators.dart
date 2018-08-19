@@ -1,16 +1,38 @@
 import 'package:flutter/material.dart';
 
+/// Adds a reversable and repetitive slide transition to each child.
+///
+/// This widget arranges its [children] in a row and applies forward and
+/// reverse animations to each child.
+///
+/// The animation can be played once or forever and is controlled
+/// through [repeat] property.
 class CollectionSlideTransition extends StatefulWidget {
+  /// Collection of widgets on which slide animation is applied.
+  ///
+  /// Preferably, [Text], [Icon] or [Image] should be used.
   final List<Widget> children;
+
+  /// End displacement for each child.
   final Offset end;
+
+  /// Start of displacement.
+  ///
+  /// This is immutable field.
   final Offset begin = Offset.zero;
+
+  /// The toggle to make the animation repeating or non-repeating.
   final bool repeat;
 
+  /// Creates transiton widget.
+  ///
+  /// [children] is requied and must not be null.
+  /// [end] property has default displacement of -1.0 in vertical direction.
   CollectionSlideTransition({
     @required this.children,
     this.end = const Offset(0.0, -1.0),
     this.repeat = true,
-  });
+  }) : assert(children != null);
 
   @override
   _CollectionSlideTransitionState createState() =>
@@ -78,17 +100,37 @@ class _CollectionSlideTransitionState extends State<CollectionSlideTransition>
   }
 }
 
+/// Adds a reversable and repetitive scale transition to each child.
+///
+/// This widget arranges its [children] in a row and applies forward and
+/// reverse animations to each child.
+///
+/// The animation can be played once or forever and is controlled
+/// through [repeat] property.
 class CollectionScaleTransition extends StatefulWidget {
+  /// Collection of widgets on which slide animation is applied.
+  ///
+  /// Preferably, [Text], [Icon] or [Image] should be used.
   final List<Widget> children;
-  final double end;
-  final double begin = 1.0;
-    final bool repeat;
 
+  /// End scale of each child.
+  final double end;
+
+  /// Start scale of each child.
+  final double begin = 1.0;
+
+  /// The toggle to make the animation repeating or non-repeating.
+  final bool repeat;
+
+  /// Creates transiton widget.
+  ///
+  /// [children] is requied and must not be null.
+  /// [end] property has default value of 2.0.
   CollectionScaleTransition({
     @required this.children,
     this.end = 2.0,
     this.repeat = true,
-  });
+  }) : assert(children != null);
 
   @override
   _CollectionScaleTransitionState createState() =>

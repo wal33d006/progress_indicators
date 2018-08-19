@@ -1,18 +1,33 @@
 import 'package:flutter/material.dart';
 
+/// Adds a heartbeat animation to its child widget.
+///
+/// The animation is repeated continuously.
 class HeartbeatProgressIndicator extends StatefulWidget {
+  /// The duration of animation playback for each iteration.
   final Duration duration;
+
+  /// Starting scale of child widget. Normally, it should be 1.0.
   final double startScale;
+
+  /// Ending scale of child widget.
   final double endScale;
+
+  /// Widget to apply the animation to.
   final Widget child;
 
+  /// Creates heartbeat indicator.
+  ///
+  /// [child] widget must not be null.
+  /// [startScale] is optional and default value is 1.0.
+  /// [endScale] is optional and default value is 2.0.
+  /// [duration] is optional and default value is 1 second.
   HeartbeatProgressIndicator({
-    Duration duration,
+    this.duration = const Duration(seconds: 1),
     this.startScale: 1.0,
     this.endScale: 2.0,
     @required this.child,
-  })  : this.duration = duration ?? Duration(milliseconds: 1000),
-        assert(child != null);
+  }) : assert(child != null);
 
   @override
   _HeartbeatProgressIndicatorState createState() =>
@@ -46,15 +61,24 @@ class _HeartbeatProgressIndicatorState extends State<HeartbeatProgressIndicator>
   }
 }
 
+/// Adds a glowing animation to its child widget.
+///
+/// The animation is repeated continuously.
 class GlowingProgressIndicator extends StatefulWidget {
+  /// The duration of animation playback for each iteration.
   final Duration duration;
+
+  /// Widget to apply the animation to.
   final Widget child;
 
+  /// Creates glowing indicator.
+  ///
+  /// [child] widget must not be null.
+  /// [duration] is optional and default value is 1 second.
   GlowingProgressIndicator({
-    Duration duration,
+    this.duration = const Duration(seconds: 1),
     @required this.child,
-  })  : this.duration = duration ?? Duration(milliseconds: 1000),
-        assert(child != null);
+  }) : assert(child != null);
 
   @override
   _GlowingProgressIndicatorState createState() =>
