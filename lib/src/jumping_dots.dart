@@ -16,7 +16,7 @@ class _JumpingDot extends AnimatedWidget {
   Widget build(BuildContext context) {
     final Animation<double> animation = listenable;
     return Container(
-      height: animation.value,
+      height: animation.value + fontSize,
       child: Text(
         '.',
         style: TextStyle(color: color, fontSize: fontSize),
