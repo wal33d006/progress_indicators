@@ -107,6 +107,7 @@ class JumpingText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CollectionSlideTransition(
+      end: end,
       children: text.runes
           .map(
             (rune) => Text(String.fromCharCode(rune)),
