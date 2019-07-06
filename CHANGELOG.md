@@ -1,4 +1,8 @@
 
+## 0.1.4
+
+* Allows you to specify a custom text style for your text effects.
+
 ## 0.1.3
 
 * Fixes JumpingText to actually make use of the "end" parameter.
