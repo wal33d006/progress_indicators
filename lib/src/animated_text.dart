@@ -9,16 +9,19 @@ import 'package:progress_indicators/src/collection_animators.dart';
 /// Although this widget does not put explicit limit on string character count,
 /// however, it should be given such that it does not exceed a line.
 ///
-/// The text displayed follows the default [TextStyle] of current theme.
+/// The text displayed follows the default [TextStyle] of current theme, unless
+/// otherwise specified.
 class FadingText extends StatefulWidget {
   /// Text to animate
   final String text;
+  /// Custom text style. If not specified, uses the default style.
+  final TextStyle style;
 
   /// Creates a fading continuous animation.
   ///
   /// The provided [text] is continuously animated using [FadeTransition].
   /// [text] must not be null.
-  FadingText(this.text) : assert(text != null);
+  FadingText(this.text, {this.style}) : assert(text != null);
 
   @override
   _FadingTextState createState() => new _FadingTextState();
@@ -72,7 +75,7 @@ class _FadingTextState extends State<FadingText> with TickerProviderStateMixin {
           .map(
             (entry) => FadeTransition(
                   opacity: entry.value,
-                  child: Text(entry.key),
+                  child: Text(entry.key, style: style),
                 ),
           )
           .toList(),
@@ -92,24 +95,26 @@ class _FadingTextState extends State<FadingText> with TickerProviderStateMixin {
 /// Although this widget does not put explicit limit on string character count,
 /// however, it should be given such that it does not exceed a line.
 ///
-/// The text displayed follows the default [TextStyle] of current theme.
+/// The text displayed follows the default [TextStyle] of current theme, unless
+/// otherwise specified.
 class JumpingText extends StatelessWidget {
   final String text;
   final Offset begin = Offset(0.0, 0.0);
   final Offset end;
+  final TextStyle style;
 
   /// Creates a jumping text widget.
   ///
   /// Each character in [text] is animated to look like a jumping effect.
   /// The [end] is the target [Offset] for each character.
-  JumpingText(this.text, {this.end = const Offset(0.0, -0.5)});
+  JumpingText(this.text, {this.end = const Offset(0.0, -0.5), this.style});
 
   @override
   Widget build(BuildContext context) {
     return CollectionSlideTransition(
       children: text.runes
           .map(
-            (rune) => Text(String.fromCharCode(rune)),
+            (rune) => Text(String.fromCharCode(rune), style: style),
           )
           .toList(),
     );
@@ -123,17 +128,19 @@ class JumpingText extends StatelessWidget {
 /// Although this widget does not put explicit limit on string character count,
 /// however, it should be given such that it does not exceed a line.
 ///
-/// The text displayed follows the default [TextStyle] of current theme.
+/// The text displayed follows the default [TextStyle] of current theme, unless
+/// otherwise specified.
 class ScalingText extends StatelessWidget {
   /// The text to add scaling effect to.
   final String text;
   final double begin = 1.0;
   final double end;
+  final TextStyle style;
 
   /// Creates a jumping text widget.
   ///
   /// Each character in [text] is scaled to [end].
-  ScalingText(this.text, {this.end = 2.0});
+  ScalingText(this.text, {this.end = 2.0, this.style});
 
   @override
   Widget build(BuildContext context) {
@@ -141,7 +148,7 @@ class ScalingText extends StatelessWidget {
       end: end,
       children: text.runes
           .map(
-            (rune) => Text(String.fromCharCode(rune)),
+            (rune) => Text(String.fromCharCode(rune), style: style),
           )
           .toList(),
     );
