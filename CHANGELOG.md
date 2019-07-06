@@ -1,3 +1,8 @@
+
+## 0.1.3
+
+* Fixes JumpingText to actually make use of the "end" parameter.
+
 ## 0.1.1
 
 * Fixes `pubspec.yaml` to remove Dart 2 support issue.
