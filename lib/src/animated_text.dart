@@ -75,7 +75,7 @@ class _FadingTextState extends State<FadingText> with TickerProviderStateMixin {
           .map(
             (entry) => FadeTransition(
                   opacity: entry.value,
-                  child: Text(entry.key, style: style),
+                  child: Text(entry.key, style: widget.style),
                 ),
           )
           .toList(),
