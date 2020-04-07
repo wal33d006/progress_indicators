@@ -1,3 +1,7 @@
+## 0.1.5
+
+* Fix not animation when font size is increased.
+* Update example with Android X capabilities.
 
 ## 0.1.4
 
