@@ -10,6 +10,7 @@ import 'package:flutter/animation.dart';
 class _JumpingDot extends AnimatedWidget {
   final Color color;
   final double fontSize;
+
   _JumpingDot({Key key, Animation<double> animation, this.color, this.fontSize})
       : super(key: key, listenable: animation);
 
@@ -49,7 +50,7 @@ class JumpingDotsProgressIndicator extends StatefulWidget {
 
   /// Starting and ending values for animations.
   final double beginTweenValue = 0.0;
-  final double endTweenValue = 8.0;
+  double endTweenValue = 8.0;
 
   /// Creates a jumping do progress indicator.
   JumpingDotsProgressIndicator({
@@ -106,21 +107,24 @@ class _JumpingDotsProgressIndicatorState
   }
 
   void _addListOfDots(int index) {
-    _widgets.add(Padding(
-      padding: EdgeInsets.only(right: dotSpacing),
-      child: _JumpingDot(
-        animation: animations[index],
-        fontSize: fontSize,
-        color: color,
+    _widgets.add(
+      Padding(
+        padding: EdgeInsets.only(right: dotSpacing),
+        child: _JumpingDot(
+          animation: animations[index],
+          fontSize: fontSize,
+          color: color,
+        ),
       ),
-    ));
+    );
   }
 
   void _buildAnimations(int index) {
     animations.add(
-        Tween(begin: widget.beginTweenValue, end: widget.endTweenValue)
-            .animate(controllers[index])
-              ..addStatusListener((AnimationStatus status) {
+      Tween(begin: widget.beginTweenValue, end: widget.endTweenValue)
+          .animate(controllers[index])
+            ..addStatusListener(
+              (AnimationStatus status) {
                 if (status == AnimationStatus.completed)
                   controllers[index].reverse();
                 if (index == numberOfDots - 1 &&
@@ -131,12 +135,14 @@ class _JumpingDotsProgressIndicatorState
                     index < numberOfDots - 1) {
                   controllers[index + 1].forward();
                 }
-              }));
+              },
+            ),
+    );
   }
 
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 30.0,
+      height: fontSize + (fontSize * 0.5),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: _widgets,
