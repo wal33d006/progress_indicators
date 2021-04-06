@@ -1,6 +1,6 @@
 name: progress_indicators
 description: A handful collection of some cool progress indicators and text animators.
-version: 0.1.5
+version: 0.1.6
 homepage: https://github.com/wal33d006/progress_indicators
 
 dependencies:
@@ -8,7 +8,7 @@ dependencies:
     sdk: flutter
 
 environment:
-  sdk: ">=2.0.0-dev.28.0 <3.0.0"
+  sdk: '>=2.12.0 <3.0.0'
 
 dev_dependencies:
   flutter_test:

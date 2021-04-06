@@ -14,14 +14,15 @@ import 'package:progress_indicators/src/collection_animators.dart';
 class FadingText extends StatefulWidget {
   /// Text to animate
   final String text;
+
   /// Custom text style. If not specified, uses the default style.
-  final TextStyle style;
+  final TextStyle? style;
 
   /// Creates a fading continuous animation.
   ///
   /// The provided [text] is continuously animated using [FadeTransition].
   /// [text] must not be null.
-  FadingText(this.text, {this.style}) : assert(text != null);
+  FadingText(this.text, {this.style});
 
   @override
   _FadingTextState createState() => new _FadingTextState();
@@ -29,7 +30,7 @@ class FadingText extends StatefulWidget {
 
 class _FadingTextState extends State<FadingText> with TickerProviderStateMixin {
   final _characters = <MapEntry<String, Animation>>[];
-  AnimationController _controller;
+  late AnimationController _controller;
 
   @override
   void initState() {
@@ -74,9 +75,9 @@ class _FadingTextState extends State<FadingText> with TickerProviderStateMixin {
       children: _characters
           .map(
             (entry) => FadeTransition(
-                  opacity: entry.value,
-                  child: Text(entry.key, style: widget.style),
-                ),
+              opacity: entry.value as Animation<double>,
+              child: Text(entry.key, style: widget.style),
+            ),
           )
           .toList(),
     );
@@ -101,7 +102,7 @@ class JumpingText extends StatelessWidget {
   final String text;
   final Offset begin = Offset(0.0, 0.0);
   final Offset end;
-  final TextStyle style;
+  final TextStyle? style;
 
   /// Creates a jumping text widget.
   ///
@@ -136,7 +137,7 @@ class ScalingText extends StatelessWidget {
   final String text;
   final double begin = 1.0;
   final double end;
-  final TextStyle style;
+  final TextStyle? style;
 
   /// Creates a jumping text widget.
   ///
