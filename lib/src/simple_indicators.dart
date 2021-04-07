@@ -26,7 +26,7 @@ class HeartbeatProgressIndicator extends StatefulWidget {
     this.duration = const Duration(seconds: 1),
     this.startScale: 1.0,
     this.endScale: 2.0,
-    @required this.child,
+    required this.child,
   }) : assert(child != null);
 
   @override
@@ -36,8 +36,8 @@ class HeartbeatProgressIndicator extends StatefulWidget {
 
 class _HeartbeatProgressIndicatorState extends State<HeartbeatProgressIndicator>
     with TickerProviderStateMixin {
-  Animation _animation;
-  AnimationController _controller;
+  late Animation _animation;
+  late AnimationController _controller;
 
   initState() {
     super.initState();
@@ -53,7 +53,7 @@ class _HeartbeatProgressIndicatorState extends State<HeartbeatProgressIndicator>
 
   @override
   Widget build(BuildContext context) =>
-      ScaleTransition(scale: _animation, child: widget.child);
+      ScaleTransition(scale: _animation as Animation<double>, child: widget.child);
 
   dispose() {
     _controller.dispose();
@@ -77,7 +77,7 @@ class GlowingProgressIndicator extends StatefulWidget {
   /// [duration] is optional and default value is 1 second.
   GlowingProgressIndicator({
     this.duration = const Duration(seconds: 1),
-    @required this.child,
+    required this.child,
   }) : assert(child != null);
 
   @override
@@ -87,8 +87,8 @@ class GlowingProgressIndicator extends StatefulWidget {
 
 class _GlowingProgressIndicatorState extends State<GlowingProgressIndicator>
     with TickerProviderStateMixin {
-  Animation _animation;
-  AnimationController _controller;
+  late Animation _animation;
+  late AnimationController _controller;
 
   initState() {
     super.initState();
@@ -104,7 +104,7 @@ class _GlowingProgressIndicatorState extends State<GlowingProgressIndicator>
 
   @override
   Widget build(BuildContext context) =>
-      FadeTransition(opacity: _animation, child: widget.child);
+      FadeTransition(opacity: _animation as Animation<double>, child: widget.child);
 
   dispose() {
     _controller.dispose();

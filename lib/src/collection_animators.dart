@@ -29,7 +29,7 @@ class CollectionSlideTransition extends StatefulWidget {
   /// [children] is requied and must not be null.
   /// [end] property has default displacement of -1.0 in vertical direction.
   CollectionSlideTransition({
-    @required this.children,
+    required this.children,
     this.end = const Offset(0.0, -1.0),
     this.repeat = true,
   }) : assert(children != null);
@@ -41,7 +41,7 @@ class CollectionSlideTransition extends StatefulWidget {
 
 class _CollectionSlideTransitionState extends State<CollectionSlideTransition>
     with SingleTickerProviderStateMixin {
-  AnimationController _controller;
+  AnimationController? _controller;
   List<_WidgetAnimations<Offset>> _widgets = [];
 
   @override
@@ -63,9 +63,9 @@ class _CollectionSlideTransitionState extends State<CollectionSlideTransition>
     );
 
     if (widget.repeat) {
-      _controller.repeat();
+      _controller!.repeat();
     } else {
-      _controller.forward();
+      _controller!.forward();
     }
   }
 
@@ -77,13 +77,13 @@ class _CollectionSlideTransitionState extends State<CollectionSlideTransition>
       children: _widgets.map(
         (widgetAnimation) {
           return AnimatedBuilder(
-            animation: _controller,
+            animation: _controller!,
             builder: (context, _) {
               return FractionalTranslation(
-                translation: widgetAnimation.forward.value.distanceSquared >=
+                translation: widgetAnimation.forward!.value.distanceSquared >=
                         end.distanceSquared
-                    ? widgetAnimation.reverse.value
-                    : widgetAnimation.forward.value,
+                    ? widgetAnimation.reverse!.value
+                    : widgetAnimation.forward!.value,
                 child: widgetAnimation.widget,
               );
             },
@@ -95,7 +95,7 @@ class _CollectionSlideTransitionState extends State<CollectionSlideTransition>
 
   @override
   void dispose() {
-    _controller.dispose();
+    _controller!.dispose();
     super.dispose();
   }
 }
@@ -127,7 +127,7 @@ class CollectionScaleTransition extends StatefulWidget {
   /// [children] is requied and must not be null.
   /// [end] property has default value of 2.0.
   CollectionScaleTransition({
-    @required this.children,
+    required this.children,
     this.end = 2.0,
     this.repeat = true,
   }) : assert(children != null);
@@ -139,7 +139,7 @@ class CollectionScaleTransition extends StatefulWidget {
 
 class _CollectionScaleTransitionState extends State<CollectionScaleTransition>
     with SingleTickerProviderStateMixin {
-  AnimationController _controller;
+  AnimationController? _controller;
   List<_WidgetAnimations<double>> _widgets = [];
 
   @override
@@ -161,9 +161,9 @@ class _CollectionScaleTransitionState extends State<CollectionScaleTransition>
     );
 
     if (widget.repeat) {
-      _controller.repeat();
+      _controller!.repeat();
     } else {
-      _controller.forward();
+      _controller!.forward();
     }
   }
 
@@ -175,12 +175,12 @@ class _CollectionScaleTransitionState extends State<CollectionScaleTransition>
       children: _widgets.map(
         (widgetAnimation) {
           return AnimatedBuilder(
-            animation: _controller,
+            animation: _controller!,
             builder: (context, _) {
               return Transform.scale(
-                scale: widgetAnimation.forward.value >= end
-                    ? widgetAnimation.reverse.value
-                    : widgetAnimation.forward.value,
+                scale: widgetAnimation.forward!.value >= end
+                    ? widgetAnimation.reverse!.value
+                    : widgetAnimation.forward!.value,
                 child: widgetAnimation.widget,
               );
             },
@@ -192,25 +192,25 @@ class _CollectionScaleTransitionState extends State<CollectionScaleTransition>
 
   @override
   void dispose() {
-    _controller.dispose();
+    _controller!.dispose();
     super.dispose();
   }
 }
 
 class _WidgetAnimations<T> {
-  final Widget widget;
-  final Animation<T> forward;
-  final Animation<T> reverse;
+  final Widget? widget;
+  final Animation<T>? forward;
+  final Animation<T>? reverse;
 
   _WidgetAnimations({this.widget, this.forward, this.reverse});
 
   static List<_WidgetAnimations<S>> createList<S>({
-    @required List<Widget> widgets,
-    @required AnimationController controller,
+    required List<Widget> widgets,
+    required AnimationController? controller,
     Cubic forwardCurve = Curves.ease,
     Cubic reverseCurve = Curves.ease,
-    S begin,
-    S end,
+    S? begin,
+    S? end,
   }) {
     final animations = <_WidgetAnimations<S>>[];
 
@@ -223,7 +223,7 @@ class _WidgetAnimations<T> {
       ).animate(
         CurvedAnimation(
           curve: Interval(start, start + duration, curve: Curves.ease),
-          parent: controller,
+          parent: controller!,
         ),
       );
 

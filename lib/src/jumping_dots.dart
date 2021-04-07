@@ -8,16 +8,16 @@ import 'package:flutter/animation.dart';
 /// The below class is a private [AnimatedWidget] class which is called in the
 /// [StatefulWidget].
 class _JumpingDot extends AnimatedWidget {
-  final Color color;
-  final double fontSize;
+  final Color? color;
+  final double? fontSize;
 
-  _JumpingDot({Key key, Animation<double> animation, this.color, this.fontSize})
+  _JumpingDot({Key? key, required Animation<double> animation, this.color, this.fontSize})
       : super(key: key, listenable: animation);
 
   Widget build(BuildContext context) {
-    final Animation<double> animation = listenable;
+    final Animation<double> animation = listenable as Animation<double>;
     return Container(
-      height: animation.value + fontSize,
+      height: animation.value + fontSize!,
       child: Text(
         '.',
         style: TextStyle(color: color, fontSize: fontSize),
@@ -73,14 +73,14 @@ class JumpingDotsProgressIndicator extends StatefulWidget {
 
 class _JumpingDotsProgressIndicatorState
     extends State<JumpingDotsProgressIndicator> with TickerProviderStateMixin {
-  int numberOfDots;
-  int milliseconds;
-  double fontSize;
-  double dotSpacing;
-  Color color;
-  List<AnimationController> controllers = new List<AnimationController>();
-  List<Animation<double>> animations = new List<Animation<double>>();
-  List<Widget> _widgets = new List<Widget>();
+  int? numberOfDots;
+  int? milliseconds;
+  double? fontSize;
+  double? dotSpacing;
+  Color? color;
+  List<AnimationController> controllers = <AnimationController>[];
+  List<Animation<double>> animations = <Animation<double>>[];
+  List<Widget> _widgets = <Widget>[];
 
   _JumpingDotsProgressIndicatorState({
     this.numberOfDots,
@@ -92,7 +92,7 @@ class _JumpingDotsProgressIndicatorState
 
   initState() {
     super.initState();
-    for (int i = 0; i < numberOfDots; i++) {
+    for (int i = 0; i < numberOfDots!; i++) {
       _addAnimationControllers();
       _buildAnimations(i);
       _addListOfDots(i);
@@ -103,13 +103,13 @@ class _JumpingDotsProgressIndicatorState
 
   void _addAnimationControllers() {
     controllers.add(AnimationController(
-        duration: Duration(milliseconds: milliseconds), vsync: this));
+        duration: Duration(milliseconds: milliseconds!), vsync: this));
   }
 
   void _addListOfDots(int index) {
     _widgets.add(
       Padding(
-        padding: EdgeInsets.only(right: dotSpacing),
+        padding: EdgeInsets.only(right: dotSpacing!),
         child: _JumpingDot(
           animation: animations[index],
           fontSize: fontSize,
@@ -127,12 +127,12 @@ class _JumpingDotsProgressIndicatorState
               (AnimationStatus status) {
                 if (status == AnimationStatus.completed)
                   controllers[index].reverse();
-                if (index == numberOfDots - 1 &&
+                if (index == numberOfDots! - 1 &&
                     status == AnimationStatus.dismissed) {
                   controllers[0].forward();
                 }
                 if (animations[index].value > widget.endTweenValue / 2 &&
-                    index < numberOfDots - 1) {
+                    index < numberOfDots! - 1) {
                   controllers[index + 1].forward();
                 }
               },
@@ -142,7 +142,7 @@ class _JumpingDotsProgressIndicatorState
 
   Widget build(BuildContext context) {
     return SizedBox(
-      height: fontSize + (fontSize * 0.5),
+      height: fontSize! + (fontSize! * 0.5),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: _widgets,
@@ -151,7 +151,7 @@ class _JumpingDotsProgressIndicatorState
   }
 
   dispose() {
-    for (int i = 0; i < numberOfDots; i++) controllers[i].dispose();
+    for (int i = 0; i < numberOfDots!; i++) controllers[i].dispose();
     super.dispose();
   }
 }
