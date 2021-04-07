@@ -1,6 +1,6 @@
 name: progress_indicators
 description: A handful collection of some cool progress indicators and text animators.
-version: 0.1.5
+version: 1.0.0
 homepage: https://github.com/wal33d006/progress_indicators
 
 dependencies:
